@@ -1,10 +1,5 @@
 import React, {Fragment} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {
-    Row, Col,
-    Card, CardBody,
-    CardTitle
-} from 'reactstrap';
 
 import PageTitle from '../../../Layout/AppMain/PageTitle';
 
@@ -35,16 +30,7 @@ export default class UserList extends React.Component
                     transitionAppearTimeout={0}
                     transitionEnter={false}
                     transitionLeave={false}>
-                    <Row>
-                        <Col lg="12">
-                            <Card className="main-card mb-3">
-                                <CardBody>
-                                    <CardTitle>Utilisateurs</CardTitle>
-                                    <List {...this.props}/>
-                                </CardBody>
-                            </Card>
-                        </Col>
-                    </Row>
+                        <List {...this.props}/>
                 </ReactCSSTransitionGroup>
             </Fragment>
         );

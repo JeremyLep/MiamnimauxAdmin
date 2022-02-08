@@ -8,29 +8,23 @@ import AsyncSelect from "react-select/async";
 
 export default class Add extends React.Component
 {
-    static POST_PRICE_URL = '/api/price';
     static POST_PRICE_URL   = '/api/price';
-    static GET_ITEMS        = '/api/items';
+    static GET_SPECIES      = '/api/species';
+    static GET_FORMULAS     = '/api/formulas';
+    static GET_DISHES       = '/api/plats';
 
     initialPrice = {
         name: "",
-        description: "",
-        age_min: "",
-        age_max: "",
-        item: "",
-        difficulty: "",
-        sku: "",
-        picture: "",
-        is_extra: false,
-    }
-
-    initialPrice = {
-        name: "",
-        price_te: "",
-        price_ti: "",
-        vat_rate: "",
-        price_vat: "",
         price: "",
+        animal_type: "",
+        kg_min: "",
+        kg_max: "",
+        grams: "",
+        kcal: "",
+        activity: "",
+        dish: "",
+        formula: "",
+        neutered: false,
         active: true
     }
 
@@ -38,10 +32,10 @@ export default class Add extends React.Component
         super(props)
         this.state = {
             price: this.initialPrice,
-            price: this.initialPrice,
-            items: []
+            species: [],
+            formulas: [],
+            dishes: []
         };
-        this.handleChangePrice = this.handleChangePrice.bind(this);
         this.handleChangePrice = this.handleChangePrice.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -69,20 +63,13 @@ export default class Add extends React.Component
         this.setState({price});
     }
 
-    handleChangePrice(event) {
-        const {name, value} = event.target;
-        const price = this.state.price;
-        price[name] = value;
-
-        this.setState({price: price});
-    }
-
     handleSubmit(event) {
         event.preventDefault();
-        this.postPriceAndPrice();
+        this.postPrice();
     }
 
-    postPriceAndPrice() {
+    postPrice() {
+        console.log(this.state.price);
         axios({
             method: 'POST',
             data: this.state.price,
@@ -92,30 +79,35 @@ export default class Add extends React.Component
                 "Content-Type": "application/json",
             }
         }).then(res => {
-            var price = this.state.price;
-            price.price = res.data.id;
+            toast['success']('Le prix a bien été ajouté !');
+            this.props.history.push('/prix');
+        }).catch(error => {
+            console.log(error.response.data);
+            if (error.response) {
+                toast['error']('Une erreur s\'est produite: <br/>' + error.response.data.errors.errors.join(' | '));
+            } else if (error.request) {
+                toast['error']('Une erreur s\'est produite lors de l`envoie de la requête');
+            } else {
+                toast['error']('Une erreur s\'est produite');
+            }
+        });
+    }
 
-            this.setState({price: price});
-            axios({
-                method: 'POST',
-                data: this.state.price,
-                url: process.env.REACT_APP_API_URI + Add.POST_PRICE_URL,
-                headers: {
-                    "Authorization": "Bearer " + getToken().token,
-                    "Content-Type": "application/json",
-                }
-            }).then(res => {
-                toast['success']('Le produit a bien été ajouté !');
-                this.props.history.push('/prix')
-            }).catch(error => {
-                console.log(error.response.data);
-                if (error.response) {
-                    toast['error']('Une erreur s\'est produite: <br/>' + error.response.data.errors.errors.join(' | '));
-                } else if (error.request) {
-                    toast['error']('Une erreur s\'est produite lors de l`envoie de la requête');
-                } else {
-                    toast['error']('Une erreur s\'est produite');
-                }
+    loadSpecies() {
+        axios({
+            method: 'GET',
+            url: process.env.REACT_APP_API_URI + Add.GET_SPECIES,
+            headers: {
+                "Authorization": "Bearer " + getToken().token,
+                "Content-Type": "application/json",
+            }
+        }).then(res => {
+            let species = res.data.species.map(function(specie){
+                return {'value': specie.id, 'label': specie.name, 'name': 'animal_type'};
+            });
+
+            this.setState({
+                species: species
             });
         }).catch(error => {
             console.log(error.response.data);
@@ -129,26 +121,52 @@ export default class Add extends React.Component
         });
     }
 
-    loadItems() {
+    loadFormulas() {
         axios({
             method: 'GET',
-            url: process.env.REACT_APP_API_URI + Add.GET_ITEMS,
+            url: process.env.REACT_APP_API_URI + Add.GET_FORMULAS,
             headers: {
                 "Authorization": "Bearer " + getToken().token,
                 "Content-Type": "application/json",
             }
         }).then(res => {
-            let items = res.data.items.map(function(item){
-                return {'value': item.id, 'label': item.name, 'name': 'item'};
+            let formulas = res.data.formulas.map(function(formula){
+                return {'value': formula.id, 'label': formula.name, 'name': 'formula'};
             });
 
-            items.push({'value': '', 'label': 'Aucun', 'name': 'item'});
-
             this.setState({
-                items: items
+                formulas: formulas
             });
         }).catch(error => {
             console.log(error.response.data);
+            if (error.response) {
+                toast['error']('Une erreur s\'est produite: <br/>' + error.response.data.errors.errors.join(' | '));
+            } else if (error.request) {
+                toast['error']('Une erreur s\'est produite lors de l`envoie de la requête');
+            } else {
+                toast['error']('Une erreur s\'est produite');
+            }
+        });
+    }
+
+    loadDishes() {
+        axios({
+            method: 'GET',
+            url: process.env.REACT_APP_API_URI + Add.GET_DISHES,
+            headers: {
+                "Authorization": "Bearer " + getToken().token,
+                "Content-Type": "application/json",
+            }
+        }).then(res => {
+            let dishes = res.data.plats.map(function(dish){
+                return {'value': dish.id, 'label': dish.name, 'name': 'dish'};
+            });
+
+            this.setState({
+                dishes: dishes
+            });
+        }).catch(error => {
+            console.log(error);
             if (error.response) {
                 toast['error']('Une erreur s\'est produite: <br/>' + error.response.data.errors.errors.join(' | '));
             } else if (error.request) {
@@ -160,11 +178,13 @@ export default class Add extends React.Component
     }
 
     componentDidMount() {
-        this.loadItems();
+        this.loadSpecies();
+        this.loadFormulas();
+        this.loadDishes();
     }
 
     render() {
-    return (
+        return (
         <Fragment>
             <ReactCSSTransitionGroup
                 component="div"
@@ -175,55 +195,99 @@ export default class Add extends React.Component
                 transitionLeave={false}>
                 <Card className="main-card mb-3">
                     <CardBody>
-                        <CardTitle>Nouveau produit</CardTitle>
+                        <CardTitle>Nouveau {this.state.price.name}</CardTitle>
                         <Form onSubmit={this.handleSubmit}>
                             <Row form>
                                 <Col md={6}>
                                     <FormGroup>
                                         <Label for="name">Nom</Label>
                                         <Input type="text" name="name" id="name" onChange={this.handleChangePrice}
-                                               placeholder="Nom du produit"/>
+                                               placeholder="Nom du prix"/>
                                     </FormGroup>
                                 </Col>
                                 <Col md={6}>
                                     <FormGroup>
-                                        <Label for="sku">SKU</Label>
-                                        <Input type="text" name="sku" id="sku" onChange={this.handleChangePrice}
-                                               placeholder="SKU"/>
+                                        <Label for="name">Prix</Label>
+                                        <Input type="number" step={0.01} name="price" id="price" onChange={this.handleChangePrice}
+                                               placeholder="Prix"/>
                                     </FormGroup>
                                 </Col>
                             </Row>
                             <Row form>
-                                <Col md={6}>
+                                <Col md={3}>
                                     <FormGroup>
-                                        <Label for="age_min">Age Min</Label>
-                                        <Input type="number" name="age_min" step={'1'} id="age_min" onChange={this.handleChangePrice}
+                                        <Label for="kg_min">Kg Min</Label>
+                                        <Input type="number" name="kg_min" step={'0.1'} id="kg_min" onChange={this.handleChangePrice}
                                                placeholder="Age Min"/>
                                     </FormGroup>
                                 </Col>
-                                <Col md={6}>
+                                <Col md={3}>
                                     <FormGroup>
-                                        <Label for="age_max">Age Max</Label>
-                                        <Input type="number" name="age_max" step={'1'} id="age_max" onChange={this.handleChangePrice}
+                                        <Label for="kg_max">Kg Max</Label>
+                                        <Input type="number" name="kg_max" step={'0.1'} id="age_max" onChange={this.handleChangePrice}
                                                placeholder="Age Max"/>
+                                    </FormGroup>
+                                </Col>
+                                <Col md={3}>
+                                    <FormGroup>
+                                        <Label for="grams">Grammes</Label>
+                                        <Input type="number" name="grams" step={'.1'} id="grams" onChange={this.handleChangePrice}
+                                               placeholder="Grammes"/>
+                                    </FormGroup>
+                                </Col>
+                                <Col md={3}>
+                                    <FormGroup>
+                                        <Label for="kcal">Kcal</Label>
+                                        <Input type="number" name="kcal" step={'.1'} id="kcal" onChange={this.handleChangePrice}
+                                               placeholder="Kcal"/>
                                     </FormGroup>
                                 </Col>
                             </Row>
                             <Row form>
                                 <Col md={6}>
                                     <FormGroup>
-                                        <Label for="difficulty">Difficulté</Label>
-                                        <Input type="number" name="difficulty" step={'1'} id="difficulty" onChange={this.handleChangePrice}
-                                               placeholder="Difficulté"/>
+                                        <Label for="activity">Activité</Label>
+                                        <Input type="select" name="activity" id="activity" onChange={this.handleChangePrice}
+                                               placeholder="Activité">
+                                            <option value={1}>Peu actif</option>
+                                            <option value={2}>Actif</option>
+                                            <option value={3}>Très actif</option>
+                                        </Input>
                                     </FormGroup>
                                 </Col>
                                 <Col md={6}>
                                     <FormGroup>
-                                        <Label for="item">Item</Label>
-                                        <AsyncSelect name="item"
+                                        <Label for="dish">Repas ID</Label>
+                                        <AsyncSelect name="dish"
                                                      cacheOptions
                                                      onChange={this.handleChangePrice}
-                                                     defaultOptions={this.state.items}
+                                                     defaultOptions={this.state.dishes}
+                                                     className="basic-multi-select"
+                                                     classNamePrefix="select">
+                                        </AsyncSelect>
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <Row form>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="animal_type">Espèce</Label>
+                                        <AsyncSelect name="animal_type"
+                                                     cacheOptions
+                                                     onChange={this.handleChangePrice}
+                                                     defaultOptions={this.state.species}
+                                                     className="basic-multi-select"
+                                                     classNamePrefix="select">
+                                        </AsyncSelect>
+                                    </FormGroup>
+                                </Col>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="formula">Formule</Label>
+                                        <AsyncSelect name="formula"
+                                                     cacheOptions
+                                                     onChange={this.handleChangePrice}
+                                                     defaultOptions={this.state.formulas}
                                                      className="basic-multi-select"
                                                      classNamePrefix="select">
                                         </AsyncSelect>
@@ -231,71 +295,8 @@ export default class Add extends React.Component
                                 </Col>
                             </Row>
                             <FormGroup>
-                                <Label for="description">Description</Label>
-                                <Input type="textarea" name="description" id="description" onChange={this.handleChangePrice}
-                                       placeholder="Description"/>
-                            </FormGroup>
-                            <FormGroup>
-                                <CustomInput type="checkbox" id="is_extra" name="is_extra" label="Extra price" defaultChecked={this.state.price.is_extra}/>
-                            </FormGroup>
-                        </Form>
-                    </CardBody>
-                </Card>
-            </ReactCSSTransitionGroup>
-            <ReactCSSTransitionGroup
-                component="div"
-                transitionName="TabsAnimation"
-                transitionAppear={true}
-                transitionAppearTimeout={0}
-                transitionEnter={false}
-                transitionLeave={false}>
-                <Card className="main-card mb-3">
-                    <CardBody>
-                        <CardTitle>Prix</CardTitle>
-                        <Form onSubmit={this.handleSubmit}>
-                            <Row form>
-                                <Col md={6}>
-                                    <FormGroup>
-                                        <Label for="name">Nom</Label>
-                                        <Input type="text" name="name" id="name" onChange={this.handleChangePrice}
-                                               placeholder="Nom prix"/>
-                                    </FormGroup>
-                                </Col>
-                            </Row>
-                            <Row form>
-                                <Col md={6}>
-                                    <FormGroup>
-                                        <Label for="price_te">Prix HT</Label>
-                                        <Input type="number" name="price_te" step={'.1'} id="price_te" onChange={this.handleChangePrice}
-                                               placeholder="Prix HT"/>
-                                    </FormGroup>
-                                </Col>
-                                <Col md={6}>
-                                    <FormGroup>
-                                        <Label for="price_ti">Prix TTC</Label>
-                                        <Input type="number" name="price_ti" step={'.1'} id="price_ti" onChange={this.handleChangePrice}
-                                               placeholder="Price TTC"/>
-                                    </FormGroup>
-                                </Col>
-                            </Row>
-                            <Row form>
-                                <Col md={6}>
-                                    <FormGroup>
-                                        <Label for="vat_rate">Taux TVA (%)</Label>
-                                        <Input type="number" name="vat_rate" step={'.1'} id="vat_rate" onChange={this.handleChangePrice}
-                                               placeholder="Taux TVA (%)"/>
-                                    </FormGroup>
-                                </Col>
-                                <Col md={6}>
-                                    <FormGroup>
-                                        <Label for="price_vat">Prix TVA</Label>
-                                        <Input type="text" name="price_vat" id="price_vat" onChange={this.handleChangePrice}
-                                               placeholder="Prix TVA"/>
-                                    </FormGroup>
-                                </Col>
-                            </Row>
-                            <FormGroup>
-                                <CustomInput type="checkbox" id="active" name="active" label="Actif" defaultChecked={this.state.price.active}/>
+                                <CustomInput type="checkbox" id="active" name="active" label="Actif" defaultChecked={this.state.price.active} inline onChange={this.handleChangePrice}/>
+                                <CustomInput type="checkbox" id="neutered" name="neutered" label="Stérilisé" defaultChecked={this.state.price.neutered} inline  onChange={this.handleChangePrice}/>
                             </FormGroup>
                             <Button color="primary" type="submit" className="mt-2">Ajouter</Button>
                         </Form>

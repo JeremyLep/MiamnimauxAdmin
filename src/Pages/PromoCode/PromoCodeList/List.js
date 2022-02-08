@@ -6,9 +6,6 @@ import {
 } from 'reactstrap';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import {Paginated, DateFormatter, BadgeColored} from "../../Components/Paginated";
 import {getToken} from "../../../Security/Security";
 
@@ -59,6 +56,11 @@ const column = [
         accessor: p => DateFormatter(p.used_date),
     },
     {
+        Header: "Code apporteur",
+        Footer: "Code apporteur",
+        accessor: p => BadgeColored(p.apporteur_code ? p.apporteur_code : '', 'info'),
+    },
+    {
         Header: "Actif",
         Footer: "Actif",
         accessor: p => BadgeColored(p.active ? 'actif' : 'non actif', 'success'),
@@ -72,11 +74,6 @@ const column = [
         Header: "Stripe Id",
         Footer: "Stripe Id",
         accessor: 'stripe_promo_code',
-    },
-    {
-        Header: "Action",
-        Footer: "Action",
-        accessor: () => <FontAwesomeIcon className={'text-center'} icon={faEllipsisV}/>
     }
 ];
 

@@ -45,11 +45,26 @@ export default class Add extends React.Component
     }
 
     handleChange(event) {
-        const {name, value} = event.target;
+        let data = event;
+
+        if (typeof event.target !== 'undefined') {
+            data = event.target;
+        }
+
+        if (Array.isArray(event)) {
+            data.value = event.map(function (obj) {
+                return obj.value;
+            })
+            data.name = event[0].name;
+        }
+
+        const {name, value, label} = data;
         const coupon = this.state.coupon;
+
+
         coupon[name] = value;
 
-        this.setState(coupon);
+        this.setState({coupon});
     }
 
     handleSubmit(event) {
@@ -117,6 +132,7 @@ export default class Add extends React.Component
                                         <Label for="duration">Répétition</Label>
                                         <Input type="select" name="duration" id="duration" onChange={this.handleChange}
                                                placeholder="Durée">
+                                            <option value={""}>--- CHOISIR ---</option>
                                             <option value={'once'}>Répéter 1 seul fois</option>
                                             <option value={'repeating'}>Répéter x fois (compléter champ "répétition en mois")</option>
                                             <option value={'forever'}>Répéter pour toujours</option>

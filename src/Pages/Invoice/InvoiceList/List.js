@@ -6,9 +6,6 @@ import {
 } from 'reactstrap';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import {Paginated, DateFormatter, BadgeColored} from "../../Components/Paginated";
 import {getToken} from "../../../Security/Security";
 
@@ -57,11 +54,6 @@ const column = [
         Header: "Date de création",
         Footer: "Date de création",
         accessor: i => DateFormatter(i.created_date),
-    },
-    {
-        Header: "Action",
-        Footer: "Action",
-        accessor: () => <FontAwesomeIcon className={'text-center'} icon={faEllipsisV}/>
     }
 ];
 

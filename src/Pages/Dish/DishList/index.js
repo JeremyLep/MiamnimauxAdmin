@@ -25,7 +25,7 @@ export default class DishList extends React.Component
                 <ReactCSSTransitionGroup
                     component="div"
                     transitionName="TabsAnimation"
-                    transitionAppear={true}
+            transitionAppear={true}
                     transitionAppearTimeout={0}
                     transitionEnter={false}
                     transitionLeave={false}>

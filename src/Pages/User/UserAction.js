@@ -5,22 +5,20 @@ import {
     Nav, NavItem, NavLink, UncontrolledButtonDropdown
 } from 'reactstrap';
 
-import {getToken} from "../../../Security/Security";
-
-import {faAngleDown} from '@fortawesome/free-solid-svg-icons';
+import {faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {getToken} from "../../Security/Security";
 
-class UserBox extends React.Component {
+class UserAction extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            active: false,
-        };
+        this.state = {};
     }
 
     render() {
-        let user = getToken();
+        let personificationUrl = process.env.REACT_APP_FRONT_URI + '/impersonate/' + getToken().token + '/' + this.props.user;
+
         return (
             <Fragment>
                 <div className="header-btn-lg pr-0">
@@ -29,27 +27,18 @@ class UserBox extends React.Component {
                             <div className="widget-content-left">
                                 <UncontrolledButtonDropdown>
                                     <DropdownToggle color="link" className="p-0">
-                                        <img width={42} className="rounded-circle" src={''} alt=""/>
-                                        <FontAwesomeIcon className="ml-2 opacity-8" icon={faAngleDown}/>
+                                        <FontAwesomeIcon className={'text-center'} icon={faEllipsisV}/>
                                     </DropdownToggle>
                                     <DropdownMenu right className="rm-pointers dropdown-menu-lg">
                                         <Nav vertical>
                                             <NavItem>
-                                                <NavLink href='/#/logout'>
-                                                    Deconnexion
-                                                </NavLink>
+                                                <a className={'dropdown-item'} href={personificationUrl}>
+                                                    Personnifier
+                                                </a>
                                             </NavItem>
                                         </Nav>
                                     </DropdownMenu>
                                 </UncontrolledButtonDropdown>
-                            </div>
-                            <div className="widget-content-left  ml-3 header-user-info">
-                                <div className="widget-heading">
-                                    {user.name}
-                                </div>
-                                <div className="widget-subheading">
-                                    Role: {user.roles.includes('ROLE_ADMIN') ? 'Admin' : user.roles.includes('ROLE_APPORTEUR') ? 'Apporteur' : 'Manager' }
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -59,4 +48,4 @@ class UserBox extends React.Component {
     }
 }
 
-export default UserBox;
+export default UserAction;

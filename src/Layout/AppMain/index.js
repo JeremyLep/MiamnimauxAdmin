@@ -37,8 +37,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -58,8 +58,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -77,8 +77,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -96,8 +96,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -115,8 +115,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -134,8 +134,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -153,8 +153,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -172,8 +172,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -191,8 +191,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -210,8 +210,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -229,8 +229,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -248,8 +248,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -267,8 +267,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -286,8 +286,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -305,8 +305,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -324,8 +324,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-5">
-                            Please wait while we load all the Tables examples
-                            <small>Because this is a demonstration we load at once all the Tables examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -345,8 +345,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-3">
-                            Please wait while we load all the Dashboard examples
-                            <small>Because this is a demonstration, we load at once all the Dashboard examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -364,8 +364,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-3">
-                            Please wait while we load all the Dashboard examples
-                            <small>Because this is a demonstration, we load at once all the Dashboard examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>
@@ -377,8 +377,8 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-3">
-                            Please wait while we load all the Dashboard examples
-                            <small>Because this is a demonstration, we load at once all the Dashboard examples. This wouldn't happen in a real live app!</small>
+                            Veuillez patienter
+                            <small>Chargement des informations</small>
                         </h6>
                     </div>
                 </div>

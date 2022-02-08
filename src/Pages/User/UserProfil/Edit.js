@@ -148,6 +148,11 @@ export default class Edit extends React.Component
                                        placeholder="Nom de famille"/>
                             </FormGroup>
                             <FormGroup>
+                                <Label for="apporteur_code">Code apporteur</Label>
+                                <Input type="text" name="apporteur_code" id="apporteur_code" value={this.state.user.apporteur_code || ''} onChange={this.handleChange}
+                                       placeholder="Code apporteur"/>
+                            </FormGroup>
+                            <FormGroup>
                                 <CustomInput type="checkbox" id="active" name="active" label="Activé" defaultChecked={this.state.user.active} inline onChange={this.handleChange}/>
                                 <CustomInput type="checkbox" id="newsletter" name="newsletter" label="Newsletter" defaultChecked={this.state.user.newsletter} inline onChange={this.handleChange}/>
                             </FormGroup>

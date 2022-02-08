@@ -58,6 +58,20 @@ export const AccountingNav = [
         to: '#/factures',
     }
 ];
+
+export const PromoNav = [
+    {
+        icon: 'pe-7s-display2',
+        label: 'Coupons',
+        to: '#/coupons',
+    },
+    {
+        icon: 'pe-7s-display2',
+        label: 'Code promotionnel',
+        to: '#/code-promo',
+    }
+];
+
 export const ConfigNav = [
     {
         icon: 'pe-7s-display2',
@@ -83,15 +97,5 @@ export const ConfigNav = [
         icon: 'pe-7s-display2',
         label: 'Maladies',
         to: '#/maladies',
-    },
-    {
-        icon: 'pe-7s-display2',
-        label: 'Coupons',
-        to: '#/coupons',
-    },
-    {
-        icon: 'pe-7s-display2',
-        label: 'Code promotionnel',
-        to: '#/code-promo',
     }
 ];

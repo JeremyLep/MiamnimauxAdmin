@@ -112,9 +112,15 @@ const MenuProfil = (props) => {
                 </NavLink>
             </NavItem>
             <NavItem>
-                <NavLink className={ `${props.props.location.pathname}` === `${props.props.match.url}/borderaux-transport` ? 'active' : '' } tag={(props) => <Link {...props} />} to={`${props.props.match.url}/borderaux-transport`}>
+                <NavLink className={ `${props.props.location.pathname}` === `${props.props.match.url}/etiquette` ? 'active' : '' } tag={(props) => <Link {...props} />} to={`${props.props.match.url}/etiquette`}>
                     <i className="nav-link-icon pe-7s-settings"> </i>
-                    Bordereaux de transport
+                    Etiquettes
+                </NavLink>
+            </NavItem>
+            <NavItem>
+                <NavLink className={ `${props.props.location.pathname}` === `${props.props.match.url}/bordereau` ? 'active' : '' } tag={(props) => <Link {...props} />} to={`${props.props.match.url}/bordereau`}>
+                    <i className="nav-link-icon pe-7s-settings"> </i>
+                    Bordereau
                 </NavLink>
             </NavItem>
         </Nav>

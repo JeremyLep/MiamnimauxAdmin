@@ -6,11 +6,11 @@ import {
 } from 'reactstrap';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {Paginated, DateFormatter, BadgeColored} from "../../Components/Paginated";
 import {getToken} from "../../../Security/Security";
+import ExportOrdersButton from "../../Components/ExportOrdersButton";
+import OrderAction from "../OrderAction";
 
 const column = [
     {
@@ -89,7 +89,7 @@ const column = [
     {
         Header: "Action",
         Footer: "Action",
-        accessor: () => <FontAwesomeIcon className={'text-center'} icon={faEllipsisV}/>
+        accessor: (o) => <OrderAction order_id={o.id} shipped={!!o.tracking_number}/>
     }
 ];
 
@@ -171,7 +171,9 @@ export default class List extends React.Component
                     <Card className="main-card mb-3">
                         <CardBody>
                             <CardTitle>Commandes</CardTitle>
-                            <Paginated data={this.state.orders != null ? this.state.orders : []} columns={column} fetchData={this.fetchData} loading={this.loading} pageCount={this.pageCount} handleSearch={this.handleSearch}/>
+                            <ExportOrdersButton/>
+                            <br/><br/><br/>
+                            <Paginated className={'pull-right'} data={this.state.orders != null ? this.state.orders : []} columns={column} fetchData={this.fetchData} loading={this.loading} pageCount={this.pageCount} handleSearch={this.handleSearch}/>
                         </CardBody>
                     </Card>
                 </Col>

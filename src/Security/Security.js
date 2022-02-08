@@ -1,8 +1,8 @@
 export const setLoginCookies = (data) => {
     const d = new Date();
     let tokens = data.token.split('.');
-    let roles = data.roles;
-    let name = data.name ? data.name : 'Test';
+    let roles = data.user.role.slice(-1).toString();
+    let name = data.user.username ? data.user.username : 'Test';
 
     d.setTime(d.getTime() + (7*24*60*60*1000));
     let expires = "expires="+ d.toUTCString();

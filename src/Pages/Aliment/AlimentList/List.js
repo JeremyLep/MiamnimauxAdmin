@@ -6,9 +6,6 @@ import {
 } from 'reactstrap';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import {Paginated, DateFormatter} from "../../Components/Paginated";
 import {getToken} from "../../../Security/Security";
 
@@ -27,22 +24,18 @@ const column = [
         Header: "Date de création",
         Footer: "Date de création",
         accessor: a => DateFormatter(a.created_date),
-    },
-    {
-        Header: "Action",
-        Footer: "Action",
-        accessor: () => <FontAwesomeIcon className={'text-center'} icon={faEllipsisV}/>
     }
 ];
 
 export default class List extends React.Component
 {
     static GET_ALL_ALIMENTS_URL     = '/api/aliments';
-    static GET_PLAT_ALIMENTS_URL   = '/api/aliment/plats/';
+    static GET_PLAT_ALIMENTS_URL   = '/api/aliments/plat/';
 
     constructor(props) {
         super(props);
-        this.platId   = props.match ? props.match.params.platId : null;
+        console.log(props);
+        this.platId   = props.match ? props.match.params.dishId : null;
         this.loading   = false;
         this.pageCount = 0;
         this.state     = {

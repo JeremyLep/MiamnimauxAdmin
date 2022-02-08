@@ -10,7 +10,7 @@ const filterSearch = async (inputValue) => {
 
     await axios({
         method: 'GET',
-        url: 'http://172.17.0.1:6767' + SearchBox.SEARCH_ALL_URL + inputValue,
+        url: `${process.env.REACT_APP_API_URI}${SearchBox.SEARCH_ALL_URL}${inputValue}`,
         headers: {
             "Authorization": "Bearer " + getToken().token,
             "Content-Type": "application/json",
@@ -88,7 +88,6 @@ class SearchBox extends React.Component {
     }
 
     redirectLink(event) {
-        console.log(this.props);
         if (event.name === 'price') {
             this.props.history.push('/prix/' + event.value + '/profile/edition');
         } else if (event.name === 'user') {
@@ -97,7 +96,7 @@ class SearchBox extends React.Component {
             this.props.history.push('/abonnements/' + event.value + '/profile/edition');
         } else if (event.name === 'formula') {
             this.props.history.push('/formules/' + event.value + '/profile/edition');
-        } else if (event.name === 'child') {
+        } else if (event.name === 'pet') {
             this.props.history.push('/animaux/' + event.value + '/profile/edition');
         } else if (event.name === 'order') {
             this.props.history.push('/commandes/' + event.value + '/profile/edition');

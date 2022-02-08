@@ -12,7 +12,7 @@ import Add from './DishProfil/Add';
 
 import AppHeader from '../../Layout/AppHeader/';
 import AppSidebar from '../../Layout/AppSidebar/';
-import AlimentList from "../Aliment/AlimentList";
+import AlimentList from "../Aliment/AlimentList/List";
 
 const Dish = ({match}) => (
     <Fragment>

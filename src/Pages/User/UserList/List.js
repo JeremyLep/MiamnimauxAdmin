@@ -1,11 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {getToken} from "../../../Security/Security";
 
 import {Paginated, DateFormatter, BadgeColored} from "../../Components/Paginated";
+import UserAction from "../UserAction";
+import {
+    Row, Col,
+    Card, CardBody,
+    CardTitle
+} from 'reactstrap';
+import ExportUsersButton from "../../Components/ExportUsersButton";
 
 const column = [
     {
@@ -29,6 +34,16 @@ const column = [
         accessor: 'email'
     },
     {
+        Header: "Role",
+        Footer: "Role",
+        accessor: u => BadgeColored(u.roles ? u.roles.slice(-1).toString().replace('ROLE_', '') : '', 'secondary'),
+    },
+    {
+        Header: "Code apporteur",
+        Footer: "Code apporteur",
+        accessor: u => BadgeColored(u.apporteur_code ? u.apporteur_code : '', u.apporteur_code ? 'info' : ''),
+    },
+    {
         Header: "Actif",
         Footer: "Actif",
         accessor: u => BadgeColored(u.active ? 'actif' : 'non actif', u.active ? 'success' : 'danger'),
@@ -36,12 +51,12 @@ const column = [
     {
         Header: "Date de création",
         Footer: "Date de création",
-        accessor: i => DateFormatter(i.created_date),
+        accessor: u => DateFormatter(u.created_date),
     },
     {
         Header: "Action",
         Footer: "Action",
-        accessor: () => <FontAwesomeIcon className={'text-center'} icon={faEllipsisV}/>
+        accessor: u => <UserAction user={u.email}/>
     }
 ];
 
@@ -107,7 +122,18 @@ export default class List extends React.Component
 
     render() {
         return (
-            <Paginated data={this.state.users != null ? this.state.users : []} columns={column} fetchData={this.fetchData} loading={this.loading} pageCount={this.pageCount} handleSearch={this.handleSearch}/>
+            <Row>
+                <Col lg="12">
+                    <Card className="main-card mb-3">
+                        <CardBody>
+                            <CardTitle>Utilisateurs</CardTitle>
+                            <ExportUsersButton/>
+                            <br/><br/><br/>
+                            <Paginated data={this.state.users != null ? this.state.users : []} columns={column} fetchData={this.fetchData} loading={this.loading} pageCount={this.pageCount} handleSearch={this.handleSearch}/>
+                        </CardBody>
+                    </Card>
+                </Col>
+            </Row>
         );
     }
 }

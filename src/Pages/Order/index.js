@@ -15,6 +15,7 @@ import Comment from '../Comment/CommentList/List';
 
 import AppHeader from '../../Layout/AppHeader/';
 import AppSidebar from '../../Layout/AppSidebar/';
+import IframePdf from "../Components/IframePdf";
 
 const Order = ({match}) => (
     <Fragment>
@@ -30,7 +31,8 @@ const Order = ({match}) => (
                     <Route path={`${match.url}/:orderId/profile/recettes`} component={Dish}/>
                     <Route path={`${match.url}/:orderId/profile/commentaire`} component={Comment}/>
                     <Route path={`${match.url}/:orderId/profile/adresse-livraison`} component={Address}/>
-                    <Route path={`${match.url}/:orderId/profile/borderaux-transport`} component={Profil}/>
+                    <Route path={`${match.url}/:orderId/profile/etiquette`} component={IframePdf}/>
+                    <Route path={`${match.url}/:orderId/profile/bordereau`} component={IframePdf}/>
                 </div>
             </div>
         </div>
