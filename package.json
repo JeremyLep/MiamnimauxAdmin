@@ -4,7 +4,7 @@
   "private": true,
   "description": "Miamnimaux - Back Office to manage app",
   "author": "JeremyLeprince",
-  "homepage": "",
+  "homepage": "https://jeremylep.github.io/MiamnimauxAdmin/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-brands-svg-icons": "^5.7.2",
