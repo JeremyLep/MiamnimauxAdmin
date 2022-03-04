@@ -36,7 +36,7 @@ export default class List extends React.Component
 {
     static GET_ALL_DISHES_URL = '/api/plats';
     static GET_ORDER_DISHES_URL = '/api/plats/order/';
-    static GET_SUB_DISHES_URL = '/api/plats/subscription';
+    static GET_SUB_DISHES_URL = '/api/plats/subscription/';
 
     constructor(props) {
         super(props);
