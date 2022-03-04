@@ -35,10 +35,12 @@ const column = [
 export default class List extends React.Component
 {
     static GET_ALL_DISHES_URL = '/api/plats';
+    static GET_ORDER_DISHES_URL = '/api/plats/order/';
+    static GET_SUB_DISHES_URL = '/api/plats/subscription';
 
     constructor(props) {
         super(props);
-        this.userId = props.match ? props.match.params.userId : null;
+        this.orderId = props.match ? props.match.params.orderId : null;
         this.subscriptionId = props.match ? props.match.params.subscriptionId : null;
         this.loading = false;
         this.pageCount = 0;
@@ -71,6 +73,12 @@ export default class List extends React.Component
     getDishes(limit = 10, offset = 0, value = '') {
         let url = List.GET_ALL_DISHES_URL;
 
+        if (typeof this.orderId !== 'undefined' && this.orderId !== null) {
+            url = List.GET_ORDER_DISHES_URL + this.orderId;
+        } else if (typeof this.subscriptionId !== 'undefined' && this.subscriptionId !== null) {
+            url = List.GET_SUB_DISHES_URL + this.subscriptionId;
+        }
+
         url += '?limit=' + limit + '&offset=' + offset + '&query=' + value;
 
         axios({
@@ -81,7 +89,7 @@ export default class List extends React.Component
                 "Content-Type": "application/json",
             }
         }).then(res => {
-            this.pageCount = Math.ceil(res.data.dishesTotal / limit);
+            this.pageCount = Math.ceil(res.data.platsTotal / limit);
             this.setState({dishes: res.data.plats})
 
             return this.state.dishes;
