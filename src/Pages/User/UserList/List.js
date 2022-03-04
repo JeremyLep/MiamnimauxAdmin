@@ -49,6 +49,11 @@ const column = [
         accessor: u => BadgeColored(u.active ? 'actif' : 'non actif', u.active ? 'success' : 'danger'),
     },
     {
+        Header: "Newsletter",
+        Footer: "Newsletter",
+        accessor: u => BadgeColored(u.newsletter ? 'Oui' : 'Non', u.newsletter ? 'success' : 'secondary'),
+    },
+    {
         Header: "Date de création",
         Footer: "Date de création",
         accessor: u => DateFormatter(u.created_date),
