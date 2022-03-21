@@ -61,7 +61,7 @@ const column = [
     {
         Header: "Action",
         Footer: "Action",
-        accessor: u => <UserAction user={u.email}/>
+        accessor: u => <UserAction user={u.email} userId={u.id}/>
     }
 ];
 
